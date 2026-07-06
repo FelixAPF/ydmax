@@ -1,114 +1,163 @@
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="logo">Y-D/MAX <span>FARC</span></div>
+  <div class="nav-links">
+    <a href="#apropos">À Propos</a>
+    <a href="#services">Nos Services</a>
+    <a href="#galerie">Réalisations</a>
+    <a href="#contact" class="btn-nav">Contactez-nous</a>
+  </div>
+</nav>
+
 <!-- En-tête / Hero Section -->
 <header class="hero">
   <div class="overlay">
     <div class="hero-content">
-      <div class="brand-badge">Repentigny</div>
-      <h1>Les Sophistiquées</h1>
-      <p class="subtitle">Salon de coiffure - 2 stylistes de plus de 25 ans d'expérience.</p>
+      <div class="brand-badge">40 Ans d'Expérience</div>
+      <h1>Y-D/MAX <span class="highlight">FARC</span></h1>
+      <p class="subtitle">Services professionnels et fiables pour tous vos travaux résidentiels et commerciaux.</p>
       <div class="hero-buttons">
-        <button class="btn-warm" (click)="scrollToSection('services')">Nos Services</button>
-        <button class="btn-outline-hero" (click)="scrollToSection('horaire')">Heures d'ouverture</button>
+        <a href="#contact" class="btn-primary">Demander une soumission</a>
+        <a href="#services" class="btn-outline">Explorer nos services</a>
       </div>
     </div>
   </div>
 </header>
 
-<!-- Section Services -->
+<!-- Section À Propos -->
+<section id="apropos" class="about-section">
+  <div class="about-container">
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop" alt="Construction Worker">
+      <div class="experience-badge">
+        <span class="number">40</span>
+        <span class="text">Ans<br>d'expertise</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <h2>Bâtir la confiance, un projet à la fois.</h2>
+      <div class="divider-left"></div>
+      <p>Forts de <strong>40 ans d'expérience</strong> dans l'industrie, nous sommes spécialisés dans l'entretien, la rénovation et les travaux extérieurs. Que vous soyez un propriétaire occupant ou gestionnaire de flotte commerciale, notre équipe garantit un résultat durable et un service impeccable.</p>
+      <ul class="check-list">
+        <li>Travail professionnel et minutieux</li>
+        <li>Service fiable respectant les délais</li>
+        <li>Résultats durables garantis</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Section Nos Services (Améliorée avec images) -->
 <section id="services" class="services">
-  <h2>Notre Expertise Capillaire</h2>
-  <div class="divider"></div>
-  <p class="section-desc">Venez profiter du savoir-faire de nos stylistes passionnées pour une expérience de coiffure entièrement personnalisée.</p>
+  <div class="section-header">
+    <h2>Notre Expertise Complète</h2>
+    <div class="divider"></div>
+    <p class="section-desc">Des solutions adaptées pour l'intérieur comme pour l'extérieur, résidentiel et commercial.</p>
+  </div>
 
   <div class="services-grid">
     
-    <!-- Catégorie 1: Coupe & Stylisme -->
+    <!-- Catégorie 1: Services Généraux -->
     <div class="service-card">
-      <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80" alt="Coupe et Stylisme">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=600&auto=format&fit=crop');"></div>
+      <div class="card-content">
+        <div class="icon-wrapper">🔨</div>
+        <h3>Entretien & Rénovation</h3>
+        <ul>
+          <li>Entretien général</li>
+          <li>Rénovation intérieure et extérieure</li>
+          <li>Travaux pour propriétaires occupants</li>
+          <li>Logements locatifs</li>
+          <li>Maisons avec vide sanitaire</li>
+        </ul>
       </div>
-      <h3>Coupe & Stylisme</h3>
-      <p>Des coupes sur mesure et un stylisme adapté à votre physionomie, réalisés par nos expertes pour mettre en valeur votre personnalité.</p>
     </div>
 
-    <!-- Catégorie 2: Coloration & Mèches (Updated Image) -->
+    <!-- Catégorie 2: Spécialités Extérieures -->
     <div class="service-card">
-      <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1554555819-f722cb0c01c5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Coloration et Mèches">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600&auto=format&fit=crop');"></div>
+      <div class="card-content">
+        <div class="icon-wrapper">🚧</div>
+        <h3>Spécialités Extérieures</h3>
+        <ul>
+          <li>Scellant à bitume</li>
+          <li>Asphalte et pavé (réparation & entretien)</li>
+          <li>Lavage à pression haute performance</li>
+          <li>Entretien de stationnements</li>
+        </ul>
       </div>
-      <h3>Coloration & Mèches</h3>
-      <p>Illuminez votre visage et donnez de la dimension à vos cheveux avec nos techniques de coloration et de balayage professionnelles.</p>
     </div>
 
-    <!-- Catégorie 3: Traitements & Mise en plis -->
+    <!-- Catégorie 3: Résidentiel & Commercial -->
     <div class="service-card">
-      <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Traitements et Mise en plis">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600&auto=format&fit=crop');"></div>
+      <div class="card-content">
+        <div class="icon-wrapper">🏗️</div>
+        <h3>Secteur Commercial</h3>
+        <ul>
+          <li>Entretien de bâtiments commerciaux</li>
+          <li>Gestion de logements locatifs</li>
+          <li>Lavage de flottes de camions</li>
+          <li>Nettoyage et scellant pour surfaces en béton</li>
+        </ul>
       </div>
-      <h3>Traitements & Mise en plis</h3>
-      <p>Des soins profonds pour revitaliser votre fibre capillaire et des mises en plis impeccables pour votre quotidien ou vos événements spéciaux.</p>
     </div>
 
   </div>
 </section>
 
-<!-- Section Mariage (Banner) -->
-<section id="mariage" class="wedding-banner" style="background-image: url('https://images.unsplash.com/photo-1519677584237-752f8853252e?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; padding: 4rem 2rem; text-align: center; color: #fff; position: relative; margin-top: 2rem;">
-  <div class="overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
-  <div class="banner-content" style="position: relative; z-index: 2; max-width: 800px; margin: 0 auto;">
-    <h2 style="color: #fff; font-size: 2.5rem; margin-bottom: 1rem;">Spécialité Coiffure de Mariage</h2>
-    <div class="divider" style="margin: 0 auto 1.5rem auto; background-color: #fff;"></div>
-    <p style="font-size: 1.2rem; margin-bottom: 2rem;">Laissez-nous faire de votre grand jour un moment inoubliable. Nos stylistes créent des coiffures élégantes et raffinées pour la mariée et son cortège.</p>
-    <a href="https://www.facebook.com/profile.php?id=61575706720917" target="_blank" rel="noopener noreferrer" class="btn-warm" style="text-decoration: none; display: inline-block;">Contactez-nous pour votre mariage</a>
+<!-- Section Galerie -->
+<section id="galerie" class="gallery-section">
+  <div class="section-header">
+    <h2>Nos Réalisations</h2>
+    <div class="divider"></div>
+    <p class="section-desc">Un aperçu de notre savoir-faire sur le terrain.</p>
+  </div>
+  <div class="gallery-grid">
+<img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chantier 1">
+    <img src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=500&auto=format&fit=crop" alt="Chantier 2">
+    <img src="https://images.unsplash.com/photo-1505798577917-a65157d3320a?q=80&w=500&auto=format&fit=crop" alt="Chantier 3">
+    <img src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?q=80&w=500&auto=format&fit=crop" alt="Chantier 4">
   </div>
 </section>
 
-<!-- Section Informations & Horaires -->
-<section id="horaire" class="info-section">
-  <div class="info-container">
+<!-- Banner Contact Direct -->
+<section id="contact" class="contact-banner">
+  <div class="banner-content">
+    <h2>Prêt à démarrer votre projet ?</h2>
+    <div class="divider-light"></div>
+    <p>Contactez-nous dès aujourd'hui. Travail professionnel, service fiable & résultats durables.</p>
     
-    <!-- Colonne de gauche : Horaires -->
-    <div class="hours-box">
-      <h3>Heures d'ouverture</h3>
-      <div class="divider-small"></div>
-      <ul class="hours-list">
-        <li><span>Lundi</span> <span>09:00 - 17:00</span></li>
-        <li><span>Mardi</span> <span>09:00 - 17:00</span></li>
-        <li><span>Mercredi</span> <span>09:00 - 17:00</span></li>
-        <li class="late-night"><span>Jeudi</span> <span>09:00 - 20:00</span></li>
-        <li class="late-night"><span>Vendredi</span> <span>09:00 - 20:00</span></li>
-        <li><span>Samedi</span> <span>09:00 - 14:00</span></li>
-        <li class="closed"><span>Dimanche</span> <span>Fermé</span></li>
-      </ul>
-    </div>
-
-    <!-- Colonne de droite : Coordonnées -->
-    <div class="contact-box">
-      <h3>Informations Utiles</h3>
-      <div class="divider-small"></div>
+    <div class="contact-cards">
+      <a href="tel:438-622-1644" class="contact-card orange-card">
+        <div class="contact-icon">📞</div>
+        <h3>YANN D.</h3>
+        <p>(438) 622-1644</p>
+        <span class="call-action">Appeler maintenant</span>
+      </a>
       
-      <div class="contact-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        <p><strong>Emplacement</strong><br>
-        37 brien, Repentigny, QC, Canada, j6a4r9</p>
-      </div>
-
-      <div class="contact-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        <p><strong>Téléphone</strong><br>
-        (450) 470-1407</p>
-      </div>
-
-      <div class="contact-item">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-        <p><strong>Médias sociaux</strong><br>
-        <a href="https://www.facebook.com/profile.php?id=61575706720917" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Visitez notre page Facebook</a></p>
-      </div>
+      <a href="tel:438-523-7734" class="contact-card green-card">
+        <div class="contact-icon">📞</div>
+        <h3>MAX B.</h3>
+        <p>(438) 523-7734</p>
+        <span class="call-action">Appeler maintenant</span>
+      </a>
     </div>
-
   </div>
 </section>
 
 <!-- Pied de page -->
 <footer>
-  <p>&copy; 2026 Les Sophistiquées. Tous droits réservés.</p>
+  <div class="footer-content">
+    <div class="footer-logo">Y-D/MAX <span>FARC</span></div>
+    <p>Services 40 ans d'expérience</p>
+    <div class="footer-links">
+      <a href="#apropos">À Propos</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Y-D/MAX FARC. Tous droits réservés.</p>
+  </div>
 </footer>

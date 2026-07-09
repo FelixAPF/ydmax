@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dépliant - Y-D/MAX FARC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===========================
+       VARIABLES & RESET
+    =========================== */
+    :root {
+      --color-primary: #e67e22; /* Orange Y-D/MAX */
+      --color-secondary: #27ae60; /* Vert Y-D/MAX */
+      --color-dark: #1f2122;
+      --color-darker: #111111;
+      --color-light: #f8f9fa;
+      --color-white: #ffffff;
+      --color-text: #444444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #555; /* Fond d'écran autour du papier */
+      color: var(--color-text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 0;
+      gap: 40px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--color-dark);
+    }
+
+    /* ===========================
+       FORMAT PAPIER (US LETTER PAYSAGE)
+    =========================== */
+    .page {
+      width: 11in;
+      height: 8.5in;
+      background: var(--color-white);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: flex;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ===========================
+       PANNEAUX & PLIURES
+    =========================== */
+    .panel {
+      flex: 1;
+      width: 33.333%;
+      height: 100%;
+      padding: 0.4in;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Lignes pointillées pour le pliage */
+    .fold-line-1, .fold-line-2 {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 0px;
+      border-left: 2px dashed rgba(0, 0, 0, 0.2);
+      z-index: 100;
+    }
+    .fold-line-1 { left: 33.333%; }
+    .fold-line-2 { left: 66.666%; }
+
+    /* ===========================
+       STYLES COMMUNS
+    =========================== */
+    .divider {
+      height: 4px;
+      width: 60px;
+      background-color: var(--color-primary);
+      margin: 15px 0;
+    }
+    
+    .divider-center {
+      margin: 15px auto;
+    }
+
+    .badge {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 5px 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    ul.service-list {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    ul.service-list li {
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 0.85rem;
+      font-weight: 600;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    ul.service-list li::before {
+      content: '➤';
+      color: var(--color-primary);
+      position: absolute;
+      left: 0;
+      font-size: 0.8rem;
+    }
+
+    ul.service-list li:last-child {
+      border-bottom: none;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-top: 15px;
+    }
+
+    /* ===========================
+       COUVERTURE (PAGE 1 - DROITE)
+    =========================== */
+    .cover-panel {
+      background: var(--color-dark);
+      color: var(--color-white);
+      text-align: center;
+      justify-content: center;
+    }
+    .cover-panel h1 {
+      color: var(--color-white);
+      font-size: 3rem;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+    .cover-panel h1 span {
+      color: var(--color-primary);
+    }
+    .cover-panel h2 {
+      color: var(--color-white);
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+    .cover-hero {
+      width: 100%;
+      height: 200px;
+      background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border: 4px solid var(--color-primary);
+    }
+    .exp-badge {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--color-primary);
+    }
+
+    /* ===========================
+       ENDOS (PAGE 1 - CENTRE)
+    =========================== */
+    .back-panel {
+      background: var(--color-light);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .contact-block {
+      background: var(--color-white);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-bottom: 15px;
+      border-top: 4px solid;
+    }
+    .contact-block.orange { border-color: var(--color-primary); }
+    .contact-block.green { border-color: var(--color-secondary); }
+    
+    .contact-block h3 { font-size: 1.5rem; margin-bottom: 5px; }
+    .contact-block p { font-size: 1.4rem; font-weight: 900; }
+    .contact-block.orange p { color: var(--color-primary); }
+    .contact-block.green p { color: var(--color-secondary); }
+
+    /* ===========================
+       RABAT INTÉRIEUR (PAGE 1 - GAUCHE)
+    =========================== */
+    .flap-panel {
+      background: var(--color-white);
+    }
+    .flap-img {
+      width: 100%;
+      height: 150px;
+      background-image: url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=600&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    /* ===========================
+       PRINT MEDIA QUERIES
+    =========================== */
+    @media print {
+      @page {
+        size: letter landscape;
+        margin: 0;
+      }
+      body {
+        background: none;
+        padding: 0;
+        gap: 0;
+      }
+      .page {
+        box-shadow: none;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==============================================
+       PAGE 1 : EXTÉRIEUR DU DÉPLIANT
+       (Rabat intérieur | Endos | Couverture)
+       ============================================== -->
+  <div class="page">
+    <div class="fold-line-1"></div>
+    <div class="fold-line-2"></div>
+
+    <!-- 1. GAUCHE : Rabat intérieur (Ce qu'on voit en premier en ouvrant) -->
+    <div class="panel flap-panel">
+      <span class="badge">À Propos</span>
+      <h2 class="section-title">Bâtir la confiance</h2>
+      <div class="divider"></div>
+      <div class="flap-img"></div>
+      <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">
+        Des services professionnels et fiables pour tous vos travaux, soutenus par 4 décennies de savoir-faire.
+      </p>
+      <ul class="service-list">
+        <li>Propriétaires occupants</li>
+        <li>Logements locatifs</li>
+        <li>Secteur résidentiel</li>
+        <li>Secteur commercial</li>
+        <li>Mise à jour de logements</li>
+      </ul>
+    </div>
+
+    <!-- 2. CENTRE : Endos (Dos du dépliant une fois fermé) -->
+    <div class="panel back-panel">
+      <div>
+        <h2 class="section-title">Contactez-nous</h2>
+        <div class="divider divider-center"></div>
+        <p style="font-size: 0.9rem; margin-bottom: 30px;">Estimation gratuite. Service rapide, fiable et résultats durables.</p>
+        
+        <div class="contact-block orange">
+          <h3>YANN D.</h3>
+          <p>(438) 622-1644</p>
+        </div>
+        
+        <div class="contact-block green">
+          <h3>MAX B.</h3>
+          <p>(438) 523-7734</p>
+        </div>
+      </div>
+
+      <div style="margin-top: auto; padding-top: 20px;">
+        <h1 style="font-size: 2rem; margin-bottom: 5px;">Y-D/MAX <span style="color: var(--color-primary);">FARC</span></h1>
+        <p style="font-size: 0.8rem;">&copy; 2026 Tous droits réservés.</p>
+      </div>
+    </div>
+
+    <!-- 3. DROITE : Couverture (Devant du dépliant) -->
+    <div class="panel cover-panel">
+      <h1>Y-D/MAX <br><span>FARC</span></h1>
+      <h2>Rénovation & Entretien</h2>
+      
+      <div class="cover-hero"></div>
+      
+      <div class="exp-badge">+ 40 ANS</div>
+      <h3 style="color: var(--color-white); letter-spacing: 2px; margin-top: 5px;">D'EXPÉRIENCE</h3>
+      <div class="divider divider-center" style="background-color: var(--color-white);"></div>
+      <p style="font-size: 0.9rem; font-weight: 600;">SERVICES PROFESSIONNELS<br>ET FIABLES</p>
+    </div>
+
+  </div>
+
+  <!-- ==============================================
+       PAGE 2 : INTÉRIEUR DU DÉPLIANT
+       (Services 1 | Services 2 | Services 3)
+       ============================================== -->
+  <div class="page">
+    <div class="fold-line-1"></div>
+    <div class="fold-line-2"></div>
+
+    <!-- 1. GAUCHE : Construction & Rénovation -->
+    <div class="panel">
+      <span class="badge">Rénovation</span>
+      <h2 class="section-title" style="font-size: 1.15rem;">Construction &<br>Rénovation</h2>
+      <div class="divider"></div>
+      
+      <h4 style="color: var(--color-primary); margin-bottom: 10px; font-size: 0.9rem;">INTÉRIEUR & EXTÉRIEUR</h4>
+      <ul class="service-list">
+        <li>Garage détaché & Cabanon</li>
+        <li>Sous-sol & Salle de bain complète</li>
+        <li>Balcon & Gazebo</li>
+        <li>Redressement de plancher</li>
+        <li>Remplacement de poutres & ajout de colonnes</li>
+        <li>Revêtement extérieur & finition intérieure</li>
+      </ul>
+
+      <h4 style="color: var(--color-primary); margin: 15px 0 10px 0; font-size: 0.9rem;">SPÉCIALITÉS</h4>
+      <ul class="service-list">
+        <li>Maison avec vide sanitaire</li>
+        <li>Toiture de bardeau</li>
+      </ul>
+    </div>
+
+    <!-- 2. CENTRE : Asphalte & Scellant -->
+    <div class="panel" style="background: var(--color-light);">
+      <span class="badge" style="background: var(--color-secondary);">Scellant</span>
+      <h2 class="section-title" style="font-size: 1.15rem;">Asphalte &<br>Béton</h2>
+      <div class="divider" style="background: var(--color-secondary);"></div>
+
+      <h4 style="color: var(--color-secondary); margin-bottom: 10px; font-size: 0.9rem;">QUALITÉ SUPÉRIEURE COMMERCIALE</h4>
+      <ul class="service-list">
+        <li>Scellant d'asphalte pulvérisé</li>
+        <li>Scellant-bitume</li>
+        <li>Entretien de stationnements</li>
+        <li>Asphalte, Béton & Pavé</li>
+      </ul>
+
+      <h4 style="color: var(--color-secondary); margin: 15px 0 10px 0; font-size: 0.9rem;">TRAVAUX DE BÉTON</h4>
+      <ul class="service-list">
+        <li>Dalle de béton & Pavé</li>
+        <li>Trottoir & Base de spa</li>
+        <li>Fondation de béton</li>
+      </ul>
+    </div>
+
+    <!-- 3. DROITE : Lavage à pression & Locatif -->
+    <div class="panel">
+      <span class="badge">Entretien</span>
+      <h2 class="section-title" style="font-size: 1.15rem;">Lavage à pression<br>& Entretien</h2>
+      <div class="divider"></div>
+
+      <h4 style="color: var(--color-primary); margin-bottom: 10px; font-size: 0.9rem;">LAVAGE HAUTE PRESSION</h4>
+      <ul class="service-list">
+        <li>Surfaces résidentielles et commerciales</li>
+        <li>Flottes de camions</li>
+        <li>Lavage d'équipements lourds</li>
+        <li>Nettoyage de façades et pavés</li>
+      </ul>
+
+      <h4 style="color: var(--color-primary); margin: 15px 0 10px 0; font-size: 0.9rem;">GESTION IMMOBILIÈRE</h4>
+      <ul class="service-list">
+        <li>Entretien de logements locatifs</li>
+        <li>Travaux entre locataires</li>
+        <li>Mise à jour et réparations diverses</li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>

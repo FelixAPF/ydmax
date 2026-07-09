@@ -155,6 +155,45 @@
 }
 
 /* ===========================
+   STATISTIQUES ANIMÉES
+=========================== */
+.stats-section {
+  background-color: var(--color-primary);
+  padding: 60px 5%;
+  color: var(--color-white);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.stat-card {
+  padding: 20px;
+}
+
+.stat-number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 10px;
+  color: var(--color-darker);
+  text-shadow: 2px 2px 0px rgba(255,255,255,0.2);
+}
+
+.stat-label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===========================
    ABOUT SECTION
 =========================== */
 .about-section {
@@ -775,7 +814,7 @@ footer {
 @media (max-width: 992px) {
   .navbar {
     width: 100vw;
-    padding: 12px 15px;
+    padding: 12px 20px;
     flex-wrap: nowrap;
     align-items: center;
     box-sizing: border-box;
@@ -797,31 +836,69 @@ footer {
     height: auto;
     min-height: 100vh;
     align-items: flex-start;
-    padding-top: 0; 
+    padding-top: 0;
     padding-bottom: 60px;
   }
 
   .overlay {
+    /* take it out of absolute positioning so it grows with its content */
+    position: relative;
+    top: auto; left: auto; right: auto; bottom: auto;
+    min-height: 100vh;
+    box-sizing: border-box;
     align-items: flex-start;
-    padding-top: 150px; 
+    padding: 120px 5% 60px;
+  }
+
+    .hero-content h1 {
+    font-size: 2.6rem;
+    line-height: 1.1;
+  }
+
+  
+  .hero-content {
+    text-align: center;
   }
   
-  .hero-content { text-align: center; }
-  .hero-buttons { justify-content: center; flex-direction: column;}
-  .hero-buttons .btn-primary, .hero-buttons .btn-outline { width: 100%; text-align: center; }
-  .hero h1 { font-size: 2.8rem; margin-bottom: 15px; line-height: 1.2; }
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
   
-  .about-container { grid-template-columns: 1fr; }
-  .about-image { order: -1; margin-bottom: 30px; }
-  .experience-badge { right: 10px; bottom: -15px; padding: 20px; }
-  .experience-badge .number { font-size: 2.5rem; }
+  .btn-primary, .btn-outline {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Ajustements pour les compteurs mobiles */
+  .stat-number {
+    font-size: 3.5rem;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+  }
   
-  .services-modern-grid { grid-template-columns: 1fr; }
+  .about-image {
+    order: -1;
+    margin-bottom: 30px;
+  }
   
+  .experience-badge {
+    right: 20px;
+    bottom: -20px;
+  }
+
+  .services-modern-grid {
+    grid-template-columns: 1fr;
+  }
+
   .ba-grid { grid-template-columns: 1fr; gap: 40px; }
   .ba-slider { height: auto; }
   
-  .inline-range { pointer-events: none; }
+  .inline-range {
+    pointer-events: none;
+  }
   
   .ba-mobile-hint {
     display: flex;
@@ -835,7 +912,7 @@ footer {
     z-index: 15;
     font-weight: 700;
     font-size: 0.9rem;
-    pointer-events: auto; 
+    pointer-events: auto;
     cursor: pointer;
     align-items: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -848,9 +925,28 @@ footer {
   .contact-methods { margin-bottom: 20px; }
   .method-card { flex-direction: column; text-align: center; padding: 15px; }
   .method-card p { word-break: break-word; font-size: 1rem; }
-  
+
   .quote-form { padding: 25px 20px; }
   .quote-form h3 { font-size: 1.5rem; text-align: center; }
 
-  .footer-content { flex-direction: column; text-align: center; gap: 15px; }
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+    .brand-badge {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    margin-bottom: 15px;
+  }
+
+  .hero-content .subtitle {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+    .inline-range {
+    pointer-events: auto;
+    touch-action: none;
+  }
 }

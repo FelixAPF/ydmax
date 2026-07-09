@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -9,13 +9,63 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = "Y-D/MAX FARC";
-  sliderValue1 = 50;
-  sliderValue2 = 50;
+  sliderValue1 = 70;
+  sliderValue2 = 70;
   
   selectedImage: string | null = null;
   activeSlider: number | null = null;
+
+  // Variables pour l'animation des compteurs
+  experienceCount = 0;
+  projectsCount = 0;
+  seasonsCount = 0;
+  private hasAnimated = false;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+ngAfterViewInit() {
+  if (isPlatformBrowser(this.platformId)) {
+    // Existing stats counter observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !this.hasAnimated) {
+          this.animateCounters();
+          this.hasAnimated = true;
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statsSection = document.getElementById('statistiques');
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+
+    // New scroll-reveal observer
+    this.initScrollReveal();
+  }
+}
+
+  animateCounters() {
+    this.animateValue('experienceCount', 0, 40, 2000);
+    this.animateValue('projectsCount', 0, 300, 2500);
+    this.animateValue('seasonsCount', 0, 4, 1500);
+  }
+
+  animateValue(prop: 'experienceCount' | 'projectsCount' | 'seasonsCount', start: number, end: number, duration: number) {
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeProgress = progress * (2 - progress); // Ease out pour ralentir à la fin
+      this[prop] = Math.floor(easeProgress * (end - start) + start);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
 
   scrollToSection(id: string): void {
     const element = document.getElementById(id);
@@ -86,4 +136,20 @@ export class AppComponent {
       button.disabled = false;
     }
   }
+
+  private initScrollReveal(): void {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-visible');
+        revealObserver.unobserve(entry.target); // animate once, then stop watching
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+  const revealTargets = document.querySelectorAll(
+    '.reveal, .reveal-left, .reveal-right, .reveal-stagger'
+  );
+  revealTargets.forEach(el => revealObserver.observe(el));
+}
 }

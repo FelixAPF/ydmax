@@ -22,16 +22,34 @@
   </div>
 </header>
 
+<!-- Nouvelle section animée des statistiques -->
+<section id="statistiques" class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">{{ experienceCount }}+</div>
+      <div class="stat-label">Années d'expérience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">{{ projectsCount }}+</div>
+      <div class="stat-label">Projets réalisés</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">{{ seasonsCount }}</div>
+      <div class="stat-label">Saisons de service</div>
+    </div>
+  </div>
+</section>
+
 <section id="apropos" class="about-section">
   <div class="about-container">
-    <div class="about-image">
+    <div class="about-image reveal-left">
       <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop" alt="Construction Worker">
       <div class="experience-badge">
         <span class="number">40</span>
         <span class="text">Ans<br>d'expertise</span>
       </div>
     </div>
-    <div class="about-text">
+    <div class="about-text reveal-right">
       <h2>Bâtir la confiance, un projet à la fois.</h2>
       <div class="divider-left"></div>
       <p>Forts de <strong>40 ans d'expérience</strong> dans l'industrie, nous sommes spécialisés dans l'entretien, la rénovation et les travaux extérieurs. Que vous soyez un propriétaire occupant ou gestionnaire de flotte commerciale, notre équipe garantit un résultat durable et un service impeccable.</p>
@@ -45,13 +63,13 @@
 </section>
 
 <section id="services" class="services">
-  <div class="section-header">
+  <div class="section-header reveal">
     <h2>Notre Expertise Complète</h2>
     <div class="divider"></div>
     <p class="section-desc">Découvrez notre gamme complète de services conçus pour protéger, rénover et valoriser votre patrimoine immobilier et vos équipements.</p>
   </div>
 
-  <div class="services-modern-grid">
+  <div class="services-modern-grid reveal-stagger">
     <div class="modern-card">
       <div class="modern-card-header" style="background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600&auto=format&fit=crop');">
         <div class="icon-floating">🛣️</div>
@@ -119,17 +137,17 @@
 </section>
 
 <section id="avant-apres" class="ba-section">
-  <div class="section-header">
+  <div class="section-header reveal">
     <h2>Nos Résultats (Avant / Après)</h2>
     <div class="divider"></div>
     <p class="section-desc">Glissez le curseur pour voir l'efficacité de nos interventions professionnelles.</p>
   </div>
 
-  <div class="ba-grid">
+  <div class="ba-grid reveal-stagger">
     <div class="ba-wrapper">
       <div class="ba-slider" [style.--clip]="sliderValue1 + '%'">
-        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" alt="Après" class="ba-img-base">
-        <img src="https://images.unsplash.com/photo-1504307651254-35680f356f27?auto=format&fit=crop&q=80&w=800" alt="Avant" class="ba-img-overlay">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" class="ba-img-base">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356f27?auto=format&fit=crop&q=80&w=800" class="ba-img-overlay">
         <input type="range" min="0" max="100" [value]="sliderValue1" (input)="updateSlider1($event)" class="ba-range inline-range">
         <div class="ba-thumb">↔</div>
         <div class="ba-mobile-hint" (click)="openSlider(1)">🔍 Agrandir</div>
@@ -176,7 +194,7 @@
 </section>
 
 <section id="galerie" class="gallery-section">
-  <div class="gallery-grid">
+  <div class="gallery-grid reveal-stagger">
     <div class="gallery-item" (click)="openLightbox('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
       <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chantier 1">
     </div>
@@ -199,7 +217,7 @@
 
 <section id="soumission" class="contact-banner">
   <div class="contact-container">
-    <div class="contact-info">
+    <div class="contact-info reveal-left">
       <h2>Demandez votre soumission</h2>
       <div class="divider-light" style="margin: 20px 0;"></div>
       <p>Envoyez-nous les détails de votre projet pour une évaluation rapide et sans engagement.</p>
@@ -230,7 +248,8 @@
 
     </div>
 
-    <form action="https://formspree.io/f/xpqgnvja" method="POST" class="quote-form" (submit)="submitForm($event)">
+    <!-- Formulaire de soumission avec AJAX -->
+    <form action="https://formspree.io/f/xpqgnvja" method="POST" class="quote-form reveal-right" (submit)="submitForm($event)">
       <h3>Détails de votre projet</h3>
       <input type="text" name="Nom" placeholder="Votre nom complet" required>
       <input type="email" name="Courriel" placeholder="Votre courriel" required>

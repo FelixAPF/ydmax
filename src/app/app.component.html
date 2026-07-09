@@ -3,8 +3,8 @@
   <div class="nav-links">
     <a (click)="scrollToSection('apropos')" style="cursor: pointer;">À Propos</a>
     <a (click)="scrollToSection('services')" style="cursor: pointer;">Nos Services</a>
-    <a (click)="scrollToSection('galerie')" style="cursor: pointer;">Réalisations</a>
-    <a (click)="scrollToSection('contact')" class="btn-nav" style="cursor: pointer;">Contactez-nous</a>
+    <a (click)="scrollToSection('avant-apres')" style="cursor: pointer;">Avant/Après</a>
+    <a (click)="scrollToSection('soumission')" class="btn-nav" style="cursor: pointer;">Soumission Rapide</a>
   </div>
 </nav>
 
@@ -15,7 +15,7 @@
       <h1>Y-D/MAX <span class="highlight">FARC</span></h1>
       <p class="subtitle">Services professionnels et fiables pour tous vos travaux résidentiels et commerciaux. La qualité garantie par 4 décennies de savoir-faire.</p>
       <div class="hero-buttons">
-        <a (click)="scrollToSection('contact')" class="btn-primary" style="cursor: pointer;">Demander une soumission</a>
+        <a (click)="scrollToSection('soumission')" class="btn-primary" style="cursor: pointer;">Demander une soumission</a>
         <a (click)="scrollToSection('services')" class="btn-outline" style="cursor: pointer;">Explorer nos services</a>
       </div>
     </div>
@@ -52,7 +52,6 @@
   </div>
 
   <div class="services-modern-grid">
-    
     <div class="modern-card">
       <div class="modern-card-header" style="background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600&auto=format&fit=crop');">
         <div class="icon-floating">🛣️</div>
@@ -116,21 +115,80 @@
         </ul>
       </div>
     </div>
+  </div>
+</section>
 
+<section id="avant-apres" class="ba-section">
+  <div class="section-header">
+    <h2>Nos Résultats (Avant / Après)</h2>
+    <div class="divider"></div>
+    <p class="section-desc">Glissez le curseur pour voir l'efficacité de nos interventions professionnelles.</p>
+  </div>
+
+  <div class="ba-grid">
+    <div class="ba-wrapper">
+      <div class="ba-slider" [style.--clip]="sliderValue1 + '%'">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" alt="Après" class="ba-img-base">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356f27?auto=format&fit=crop&q=80&w=800" alt="Avant" class="ba-img-overlay">
+        <input type="range" min="0" max="100" [value]="sliderValue1" (input)="updateSlider1($event)" class="ba-range inline-range">
+        <div class="ba-thumb">↔</div>
+        <div class="ba-mobile-hint" (click)="openSlider(1)">🔍 Agrandir</div>
+      </div>
+      <h3 class="ba-title">Scellant d'asphalte</h3>
+    </div>
+
+    <div class="ba-wrapper">
+      <div class="ba-slider" [style.--clip]="sliderValue2 + '%'">
+        <img src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&q=80&w=800" alt="Après" class="ba-img-base">
+        <img src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&q=80&w=800" alt="Avant" class="ba-img-overlay">
+        <input type="range" min="0" max="100" [value]="sliderValue2" (input)="updateSlider2($event)" class="ba-range inline-range">
+        <div class="ba-thumb">↔</div>
+        <div class="ba-mobile-hint" (click)="openSlider(2)">🔍 Agrandir</div>
+      </div>
+      <h3 class="ba-title">Lavage à pression</h3>
+    </div>
+  </div>
+
+  <div class="lightbox-overlay" *ngIf="activeSlider !== null" (click)="closeSlider()">
+    <span class="lightbox-close" (click)="closeSlider()">&times;</span>
+    <div class="lightbox-slider-container" (click)="$event.stopPropagation()">
+      
+      <div *ngIf="activeSlider === 1" class="ba-slider lightbox-ba" [style.--clip]="sliderValue1 + '%'">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" alt="Après" class="ba-img-base">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356f27?auto=format&fit=crop&q=80&w=800" alt="Avant" class="ba-img-overlay">
+        <input type="range" min="0" max="100" [value]="sliderValue1" (input)="updateSlider1($event)" class="ba-range">
+        <div class="ba-thumb">↔</div>
+      </div>
+
+      <div *ngIf="activeSlider === 2" class="ba-slider lightbox-ba" [style.--clip]="sliderValue2 + '%'">
+        <img src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&q=80&w=800" alt="Après" class="ba-img-base">
+        <img src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&q=80&w=800" alt="Avant" class="ba-img-overlay">
+        <input type="range" min="0" max="100" [value]="sliderValue2" (input)="updateSlider2($event)" class="ba-range">
+        <div class="ba-thumb">↔</div>
+      </div>
+
+      <h3 class="ba-title" style="margin-top: 20px; text-align: center; color: var(--color-dark);">
+        {{ activeSlider === 1 ? 'Scellant d\'asphalte' : 'Lavage à pression' }}
+      </h3>
+      <p style="text-align: center; color: var(--color-text); font-size: 0.95rem; margin-top: 5px;">Glissez le curseur pour comparer</p>
+    </div>
   </div>
 </section>
 
 <section id="galerie" class="gallery-section">
-  <div class="section-header">
-    <h2>Nos Réalisations</h2>
-    <div class="divider"></div>
-    <p class="section-desc">Un aperçu de notre savoir-faire sur le terrain.</p>
-  </div>
   <div class="gallery-grid">
-    <img (click)="openLightbox('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chantier 1">
-    <img (click)="openLightbox('https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=1200&auto=format&fit=crop')" src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=500&auto=format&fit=crop" alt="Chantier 2">
-    <img (click)="openLightbox('https://images.unsplash.com/photo-1505798577917-a65157d3320a?q=80&w=1200&auto=format&fit=crop')" src="https://images.unsplash.com/photo-1505798577917-a65157d3320a?q=80&w=500&auto=format&fit=crop" alt="Chantier 3">
-    <img (click)="openLightbox('https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?q=80&w=1200&auto=format&fit=crop')" src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?q=80&w=500&auto=format&fit=crop" alt="Chantier 4">
+    <div class="gallery-item" (click)="openLightbox('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chantier 1">
+    </div>
+    <div class="gallery-item" (click)="openLightbox('https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=1200&auto=format&fit=crop')">
+      <img src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=500&auto=format&fit=crop" alt="Chantier 2">
+    </div>
+    <div class="gallery-item" (click)="openLightbox('https://images.unsplash.com/photo-1505798577917-a65157d3320a?q=80&w=1200&auto=format&fit=crop')">
+      <img src="https://images.unsplash.com/photo-1505798577917-a65157d3320a?q=80&w=500&auto=format&fit=crop" alt="Chantier 3">
+    </div>
+    <div class="gallery-item" (click)="openLightbox('https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?q=80&w=1200&auto=format&fit=crop')">
+      <img src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?q=80&w=500&auto=format&fit=crop" alt="Chantier 4">
+    </div>
   </div>
 
   <div class="lightbox-overlay" *ngIf="selectedImage" (click)="closeLightbox()">
@@ -139,41 +197,68 @@
   </div>
 </section>
 
-<section id="contact" class="contact-banner">
-  <div class="banner-content">
-    <h2>Prêt à démarrer votre projet ?</h2>
-    <div class="divider-light"></div>
-    <p>Contactez-nous dès aujourd'hui. Travail professionnel, service fiable & résultats durables.</p>
-    
-    <div class="contact-cards">
-      <a href="tel:438-622-1644" class="contact-card orange-card">
-        <div class="contact-icon">📞</div>
-        <h3>YANN D.</h3>
-        <p>(438) 622-1644</p>
-        <span class="call-action">Appeler maintenant</span>
-      </a>
+<section id="soumission" class="contact-banner">
+  <div class="contact-container">
+    <div class="contact-info">
+      <h2>Demandez votre soumission</h2>
+      <div class="divider-light" style="margin: 20px 0;"></div>
+      <p>Envoyez-nous les détails de votre projet pour une évaluation rapide et sans engagement.</p>
       
-      <a href="tel:438-523-7734" class="contact-card green-card">
-        <div class="contact-icon">📞</div>
-        <h3>MAX B.</h3>
-        <p>(438) 523-7734</p>
-        <span class="call-action">Appeler maintenant</span>
-      </a>
+      <div class="contact-methods">
+        <a href="tel:4386221644" class="method-card method-orange">
+          <span class="icon">📞</span>
+          <div>
+            <h4>Yann D.</h4>
+            <p>(438) 622-1644</p>
+          </div>
+        </a>
+        <a href="tel:4385237734" class="method-card method-green">
+          <span class="icon">📞</span>
+          <div>
+            <h4>Max B.</h4>
+            <p>(438) 523-7734</p>
+          </div>
+        </a>
+        <a href="mailto:info@ydmax.com" class="method-card method-neutral">
+          <span class="icon">✉️</span>
+          <div>
+            <h4>Courriel</h4>
+            <p>info&#64;ydmax.com</p>
+          </div>
+        </a>
+      </div>
+
     </div>
+
+    <form action="https://formspree.io/f/xpqgnvja" method="POST" class="quote-form" (submit)="submitForm($event)">
+      <h3>Détails de votre projet</h3>
+      <input type="text" name="Nom" placeholder="Votre nom complet" required>
+      <input type="email" name="Courriel" placeholder="Votre courriel" required>
+      <input type="tel" name="Telephone" placeholder="Votre numéro de téléphone" required>
+      <select name="Service" required>
+        <option value="" disabled selected>Service désiré...</option>
+        <option value="Entretien et Renovation">Entretien & Rénovation</option>
+        <option value="Asphalte et Scellant">Asphalte & Scellant</option>
+        <option value="Lavage a pression">Lavage à Pression</option>
+        <option value="Logements Locatifs">Logements Locatifs</option>
+        <option value="Autre">Autre</option>
+      </select>
+      <textarea name="Message" placeholder="Décrivez votre projet (dimensions, type de surface, etc.)..." rows="5" required></textarea>
+      <button type="submit" class="btn-submit">Envoyer la demande</button>
+    </form>
   </div>
 </section>
 
 <footer>
   <div class="footer-content">
     <div class="footer-logo">Y-D/MAX <span>FARC</span></div>
-    <p>Services avec 40 ans d'expérience</p>
     <div class="footer-links">
       <a (click)="scrollToSection('apropos')" style="cursor: pointer;">À Propos</a>
       <a (click)="scrollToSection('services')" style="cursor: pointer;">Services</a>
-      <a (click)="scrollToSection('contact')" style="cursor: pointer;">Contact</a>
+      <a (click)="scrollToSection('soumission')" style="cursor: pointer;">Contact</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; {{currentYear}} Y-D/MAX FARC. Tous droits réservés.</p>
+    <p>&copy; 2026 Y-D/MAX FARC. Tous droits réservés.</p>
   </div>
 </footer>
